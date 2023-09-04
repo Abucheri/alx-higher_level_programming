@@ -12,8 +12,8 @@
 
 int check_cycle(listint_t *list)
 {
-	listint_t = *tr;
-	listint_t = *hr;
+	listint_t *tr;
+	listint_t *hr;
 
 	if (list == NULL || list->next == NULL)
 	{
