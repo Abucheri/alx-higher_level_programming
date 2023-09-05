@@ -80,3 +80,14 @@
 	guillaume@ubuntu:~/0x01$ ./2-print_alphabet.py
 	abcdefghijklmnopqrstuvwxyzguillaume@ubuntu:~/0x01$
 	```
+3. When I was having that alphabet soup, I never thought that it would pay off
+	- 3. When I was having that alphabet soup, I never thought that it would pay off
+		- Print all the letters except `q` and `e`
+		- You can only use one `print` function with string format
+		- You can only use one loop in your code
+		- You are not allowed to store characters in a variable
+		- You are not allowed to import any module
+	```
+	guillaume@ubuntu:~/0x01$ ./3-print_alphabt.py
+	abcdfghijklmnoprstuvwxyzguillaume@ubuntu:~/0x01$
+	```
