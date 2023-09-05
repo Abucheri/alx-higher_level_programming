@@ -32,3 +32,5 @@
 	5 is positive
 	guillaume@ubuntu:~/0x01$ 
 	```
+1. The last digit
+	- 
