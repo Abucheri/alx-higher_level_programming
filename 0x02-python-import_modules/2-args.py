@@ -7,6 +7,6 @@ if __name__ == "__main__":
     elif cmds == 1:
         print("1 argument:")
     else:
-        print("{} arguments.".format(cmds))
+        print("{} arguments:".format(cmds))
     for i, cmd in enumerate(sys.argv[1:], start=1):
         print("{}: {}".format(i, cmd))
