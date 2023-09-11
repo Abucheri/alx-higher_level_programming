@@ -15,17 +15,17 @@ int is_palindrome(listint_t **head);
 
 listint_t *reverse_list(listint_t **head)
 {
-	listint_t *prev = NULL, *next = NULL;
-	listint_t *current = *head;
+	listint_t *node = *head, *next, *prev = NULL;
 
-	while (current != NULL)
+	while (node)
 	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
+		next = node->next;
+		node->next = prev;
+		prev = node;
+		node = next;
 	}
-	return (prev);
+	*head = prev;
+	return (*head);
 }
 
 /**
@@ -39,32 +39,33 @@ listint_t *reverse_list(listint_t **head)
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *slow_ptr = *head, *fast_ptr = *head;
-	listint_t *prev_slow_ptr = NULL;
-	listint_t *second_half = NULL;
-	int is_palindrome = 1;
+	listint_t *temp, *prev, *midl;
+	size_t size = 0, i;
 
-	if (*head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return (1);
-	while (fast_ptr != NULL && fast_ptr->next != NULL)
+	temp = *head;
+	while (temp)
 	{
-		fast_ptr = fast_ptr->next->next;
-		prev_slow_ptr = slow_ptr;
-		slow_ptr = slow_ptr->next;
+		size++;
+		temp = temp->next;
 	}
-	if (fast_ptr != NULL)
-		slow_ptr = slow_ptr->next;
-	second_half = reverse_list(&slow_ptr);
-	while (second_half != NULL)
+	temp = *head;
+	for (i = 0; i < (size / 2) - 1; i++)
+		temp = temp->next;
+	if ((size % 2) == 0 && temp->n != temp->next->n)
+		return (0);
+	temp = temp->next->next;
+	prev = reverse_list(&temp);
+	midl = prev;
+	temp = *head;
+	while (prev)
 	{
-		if ((*head)->n != second_half->n)
-		{
-			is_palindrome = 0;
-			break;
-		}
-		*head = (*head)->next;
-		second_half = second_half->next;
+		if (temp->n != prev->n)
+			return (0);
+		temp = temp->next;
+		prev = prev->next;
 	}
-	prev_slow_ptr->next = reverse_list(&slow_ptr);
-	return (is_palindrome);
+	reverse_list(&midl);
+	return (1);
 }
