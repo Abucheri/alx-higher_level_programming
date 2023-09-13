@@ -22,4 +22,4 @@ def roman_to_int(roman_string):
         else:
             res -= val
         pval = val
-        return res
+    return res
