@@ -1,4 +1,3 @@
-#define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include <stdio.h>
 
@@ -15,16 +14,24 @@ void print_python_bytes(PyObject *p);
 
 void print_python_list(PyObject *p)
 {
+	int size, allocate, i;
+	const char *t;
 	PyListObject *list = (PyListObject *)p;
-	Py_ssize_t size = PyList_GET_SIZE(p);
-	Py_ssize_t i;
+	PyVarObject *var = (PyVarObject *)p;
 
+	size = var->ob_size;
+	allocate = list->allocated;
 	printf("[*] Python list info\n");
-	printf("[*] Size of the Python List = %ld\n", size);
-	printf("[*] Allocated = %ld\n", list->allocated);
+	printf("[*] Size of the Python List = %d\n", size);
+	printf("[*] Allocated = %d\n", allocate);
 	for (i = 0; i < size; i++)
 	{
-		printf("Element %ld: %s\n", i, Py_TYPE(list->ob_item[i])->tp_name);
+		t = list->ob_item[i]->ob_type->tp_name;
+		printf("Element %d: %s\n", i, t);
+		if (strcmp(t, "bytes") == 0)
+		{
+			print_python_bytes(list->ob_item[i]);
+		}
 	}
 }
 
@@ -38,17 +45,32 @@ void print_python_list(PyObject *p)
 
 void print_python_bytes(PyObject *p)
 {
-	PyBytesObject *bytes = (PyBytesObject *)p;
-	Py_ssize_t size = PyBytes_GET_SIZE(p);
-	Py_ssize_t i;
+	unsigned char i, sz;
+	PyBytesObject *b = (PyBytesObject *)p;
 
 	printf("[.] bytes object info\n");
-	printf("  size: %ld\n", size);
-	printf("  trying string: %s\n", PyUnicode_1BYTE_DATA(p));
-	printf("  first %ld bytes:", size <= 10 ? size : 10);
-	for (i = 0; i < (size <= 10 ? size : 10); i++)
+	if (strcmp(p->ob_type->tp_name, "bytes") != 0)
 	{
-		printf(" %02x", bytes->ob_sval[i]);
+		printf("  [ERROR] Invalid Bytes Object\n");
+		return;
 	}
-	printf("\n");
+	printf("  size: %ld\n", ((PyVarObject *)p)->ob_size);
+	printf("  trying string: %s\n", b->ob_sval);
+	if (((PyVarObject *)p)->ob_size > 10)
+	{
+		sz = 10;
+	}
+	else
+	{
+		sz = ((PyVarObject *)p)->ob_size + 1;
+	}
+	printf("  first %d bytes: ", sz);
+	for (i = 0; i < sz; i++)
+	{
+		printf("%02hhx", b->ob_sval[i]);
+		if (i == (sz - 1))
+			printf("\n");
+		else
+			printf(" ");
+	}
 }
