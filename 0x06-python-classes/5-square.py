@@ -12,7 +12,7 @@ class Square:
         Args:
             size (int, optional): The size of the square (default is 0).
         """
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
@@ -49,8 +49,7 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        """Prints the square using the x-ter #. If size is 0, print an empty line.
-        """
+        """Prints the square using the x-ter #. If size is 0, print an empty line."""
         if self.__size == 0:
             print()
         else:
