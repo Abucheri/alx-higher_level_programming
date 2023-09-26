@@ -3,7 +3,7 @@
 """Defining a Square Class."""
 
 
-class Square:
+class Square(object):
     """The Square class."""
 
     def __init__(self, size=0):
@@ -12,7 +12,7 @@ class Square:
         Args:
             size (int, optional): The size of the square (default is 0).
         """
-        self.size = size
+        self.__size = size
 
     @property
     def size(self):
@@ -25,7 +25,7 @@ class Square:
 
     @size.setter
     def size(self, value):
-        """Sets the value of the size attribute with type and value validation.
+        """Sets the value of the size attribute.
 
         Args:
             value (int): The new size value to set
@@ -49,8 +49,8 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        """Prints the square using the x-ter #. If size is 0, print an empty line."""
-        for x in range(0, self.__size):
+        """Prints the square using the x-ter #."""
+        for x in range(self.__size):
             [print("#", end="") for a in range(self.__size)]
             print("")
         if self.__size == 0:
