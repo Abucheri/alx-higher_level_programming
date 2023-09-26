@@ -36,7 +36,7 @@ class Square:
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
@@ -50,8 +50,8 @@ class Square:
 
     def my_print(self):
         """Prints the square using the x-ter #. If size is 0, print an empty line."""
+        for x in range(0, self.__size):
+            [print("#", end="") for a in range(self.__size)]
+            print("")
         if self.__size == 0:
-            print()
-        else:
-            for _ in range(self.__size):
-                print("#" * self.__size)
+            print("")
