@@ -10,8 +10,8 @@ class Square:
         """Initializes a new Square instance.
 
         Args:
-            size (int, optional): The size of the square (default is 0).
-            position (tuple, optional): The position of the square (default is (0, 0)).
+            size (int, optional): The size of the square.
+            position (tuple, optional): The position of the square.
         """
         self.size = size
         self.position = position
@@ -53,13 +53,13 @@ class Square:
 
     @position.setter
     def position(self, value):
-        """Sets val of position attr with type and value validation.
+        """Sets val of pos attr with type and val validation.
 
         Args:
             value (int): New position val to set
 
         Raises:
-            TypeError: If value is not a tuple of 2 positive integers.
+            TypeError: If value is not a tuple of 2 +ve ints.
         """
         if (not isinstance(value, tuple) or len(value) != 2 or
                 not all(isinstance(val, int) and val >= 0 for val in value)):
@@ -75,8 +75,7 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        """Print the square using the x-ter #. If size is equal to 0,
-        print an empty line. 
+        """Print the square using the x-ter #.  
         Use the position attribute to adjust the position of the square.
         """
         if self.__size == 0:
