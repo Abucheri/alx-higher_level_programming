@@ -2,5 +2,7 @@
 
 """Defining a Square class"""
 
+
 class Square:
+    """The Square Class"""
     pass
