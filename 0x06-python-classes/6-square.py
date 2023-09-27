@@ -11,10 +11,10 @@ class Square:
 
         Args:
             size (int, optional): The size of the square.
-            position (tuple, optional): The position of the square.
+            position (int, int): The position of the square.
         """
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
