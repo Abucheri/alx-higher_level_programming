@@ -18,7 +18,7 @@ class Square:
 
     @property
     def size(self):
-        """Retrieves val of size attr
+        """Retrieves value of size attribute
 
         Returns:
             int: Size of square
@@ -27,10 +27,10 @@ class Square:
 
     @size.setter
     def size(self, value):
-        """Sets val of size attr with type and val validation.
+        """Sets value of size attribute with type and value validation.
 
         Args:
-            value (int): New size val to set
+            value (int): New size value to set
 
         Raises:
             TypeError: If value is not an integer.
@@ -44,7 +44,7 @@ class Square:
 
     @property
     def position(self):
-        """Retrieves val position attr.
+        """Retrieves value position attribute.
         
         Returns:
             tuple: Position of the square
@@ -53,13 +53,13 @@ class Square:
 
     @position.setter
     def position(self, value):
-        """Sets val of pos attr with type and val validation.
+        """Sets value of position attribute with type and value validation.
 
         Args:
-            value (int): New position val to set
+            value (int): New position value to set
 
         Raises:
-            TypeError: If value is not a tuple of 2 +ve ints.
+            TypeError: If value is not a tuple of 2 +ve integers.
         """
         if (not isinstance(value, tuple) or len(value) != 2 or
                 not all(isinstance(val, int) and val >= 0 for val in value)):
@@ -79,9 +79,9 @@ class Square:
         Use the position attribute to adjust the position of the square.
         """
         if self.__size == 0:
-            print()
+            print("")
             return
         for _ in range(self.__position[1]):
-            print()
+            print("")
         for _ in range(self.__size):
             print(" " * self.__position[0] + "#" * self.__size)
