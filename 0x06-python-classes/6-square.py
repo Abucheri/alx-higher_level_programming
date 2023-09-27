@@ -45,7 +45,7 @@ class Square:
     @property
     def position(self):
         """Retrieves value position attribute.
-        
+
         Returns:
             tuple: Position of the square
         """
@@ -75,7 +75,7 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        """Print the square using the x-ter #.  
+        """Print the square using the x-ter #.
         Use the position attribute to adjust the position of the square.
         """
         if self.__size == 0:
