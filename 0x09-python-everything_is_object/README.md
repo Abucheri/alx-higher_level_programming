@@ -117,3 +117,13 @@
 	l1 = l1 + [4]
 	print(l2)
 	```
+
+16. Integer incrementation
+	- What does this script print?
+	```
+	def increment(n):
+		n += 1
+	a = 1
+	increment(a)
+	print(a)
+	```
