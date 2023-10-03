@@ -40,8 +40,8 @@ def solve_nqueens(board, row):
         list of list: List of solutions.
     """
     if row == len(board):
-        solution = [[r, c] for r, row in enumerate(board)\
-                for c, val in enumerate(row) if val == 1]
+        solution = ([[r, c] for r, row in enumerate(board)
+                    for c, val in enumerate(row) if val == 1])
         return [solution]
 
     solutions = []
