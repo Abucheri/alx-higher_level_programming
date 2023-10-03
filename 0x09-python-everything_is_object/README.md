@@ -189,3 +189,9 @@
 	a = ()
 	```
 	- Is `a` a tuple? Answer with `Yes` or `No`.
+
+21. Tuple or not?
+	```
+	a = (1, 2)
+	```
+	- Is `a` a tuple? Answer with `Yes` or `No`.
