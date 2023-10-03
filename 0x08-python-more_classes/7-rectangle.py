@@ -103,8 +103,12 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-        return ("\n".join([str(Rectangle.print_symbol) * self.__width
-            for _ in range(self.__height)]))
+        res = []
+        for i in range(self.__height):
+            [res.append(str(self.print_symbol)) for j in range(self.__width)]
+            if i != self.__height - 1:
+                res.append("\n")
+        return ("".join(res))
 
     def __repr__(self):
         """Returns a string representation of the object.
