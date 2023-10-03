@@ -242,3 +242,14 @@
 	>>> id(a)
 	```
 	- Will the last line of this script print `139926795932424`? Answer with `Yes` or `No`.
+
+28. Same or not?
+	```
+	>>> a
+	[1, 2, 3]
+	>>> id (a)
+	139926795932424
+	>>> a += [4]
+	>>> id(a)
+	```
+	- Will the last line of this script print `139926795932424`? Answer with `Yes` or `No`.
