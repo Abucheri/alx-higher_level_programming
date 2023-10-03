@@ -183,3 +183,9 @@
 	guillaume@ubuntu:~/0x09$ 
 	```
 	- ___No test cases needed___
+
+20. Tuple or not?
+	```
+	a = ()
+	```
+	- Is `a` a tuple? Answer with `Yes` or `No`.
