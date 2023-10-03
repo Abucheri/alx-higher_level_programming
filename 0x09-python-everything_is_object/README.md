@@ -75,3 +75,11 @@
 	>>> l2 = [1, 2, 3] 
 	>>> print(l1 == l2)
 	```
+
+11. And with a list, is it the same
+	- What do these 3 lines print?
+	```
+	>>> l1 = [1, 2, 3]
+	>>> l2 = [1, 2, 3] 
+	>>> print(l1 is l2)
+	```
