@@ -253,3 +253,33 @@
 	>>> id(a)
 	```
 	- Will the last line of this script print `139926795932424`? Answer with `Yes` or `No`.
+
+29. #pythonic
+	- Write a function `magic_string()` that returns a string “BestSchool” n times the number of the iteration (see code):
+		- Format: see example
+		- Your file should be maximum 4-line long (no documentation needed)
+		- You are not allowed to import any module
+	```
+	guillaume@ubuntu:~/0x09$ cat 100-main.py
+	#!/usr/bin/python3
+	magic_string = __import__('100-magic_string').magic_string
+
+	for i in range(10):
+    		print(magic_string())
+
+	guillaume@ubuntu:~/0x09$ ./100-main.py | cat -e
+	BestSchool$
+	BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool$
+	BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool, BestSchool$
+	guillaume@ubuntu:~/0x09$ wc -l 100-magic_string.py 
+	4 100-magic_string.py
+	guillaume@ubuntu:~/0x09$ 
+	```
+	- ___No test cases needed___
