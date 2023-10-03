@@ -28,6 +28,7 @@ def is_safe(board, row, col):
 
     return True
 
+
 def solve_nqueens(board, row):
     """Solve the N queens problem using a recursive backtracking algorithm.
 
@@ -53,6 +54,7 @@ def solve_nqueens(board, row):
 
     return solutions
 
+
 def print_solutions(solutions):
     """Print the solutions to the N queens problem.
 
@@ -61,6 +63,7 @@ def print_solutions(solutions):
     """
     for solution in solutions:
         print(solution)
+        
 
 def main():
     """Main function"""
@@ -81,6 +84,7 @@ def main():
     board = [[0 for _ in range(n)] for _ in range(n)]
     solutions = solve_nqueens(board, 0)
     print_solutions(solutions)
+    
 
 if __name__ == "__main__":
     main()
