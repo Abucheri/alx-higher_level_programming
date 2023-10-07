@@ -19,9 +19,11 @@ def matrix_divided(matrix, div):
         TypeError: If the matrix contains rows of different sizes.
         ZeroDivisionError: If div is equal to zero.
     """
-    if (not isinstance(matrix, list) or not all(isinstance(row, list)
-        for row in matrix) or not all(isinstance(num, (int, float))
-            for row in matrix for num in row)):
+    is_matrix_list = isinstance(matrix, list)
+    is_matrix_valid = all(isinstance(row, list) for row in matrix)
+    is_elements_valid = all((isinstance(num, (int, float))
+                            for row in matrix for num in row))
+    if not (is_matrix_list and is_matrix_valid and is_elements_valid):
         raise TypeError("matrix must be a matrix (list of lists) "
                         "of integers/floats")
 

@@ -34,14 +34,6 @@ Divide all elements of the matrix by a specified divisor:
 
 Error Handling Mechanism
 =========================
-The ``matrix_divided(...)`` function handles various error cases:
-If the input matrix is not a list of lists of integers or floats, it raises a TypeError:
-
-::
-
-	>>> matrix_divided([1, 2, 3], 2)
-	Traceback (most recent call last):
-	TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 If the rows of the matrix have different sizes, it raises a TypeError:
 
