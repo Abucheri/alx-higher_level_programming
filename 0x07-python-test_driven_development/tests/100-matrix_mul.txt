@@ -236,7 +236,7 @@ Error Handling Mechanism
 	... ]
 	>>> print(matrix_mul(m_a, m_b))
 	Traceback (most recent call last):
-	TypeError: each row of m_a must should be of the same size
+	TypeError: each row of m_a must be of the same size
 
 ::
 
@@ -250,7 +250,7 @@ Error Handling Mechanism
 	... ]
 	>>> print(matrix_mul(m_a, m_b))
 	Traceback (most recent call last):
-	TypeError: each row of m_b must should be of the same size
+	TypeError: each row of m_b must be of the same size
 
 ::
 
@@ -261,4 +261,4 @@ Error Handling Mechanism
 	>>> m_b = m_a
 	>>> print(matrix_mul(m_a, m_b))
 	Traceback (most recent call last):
-	TypeError: each row of m_a must should be of the same size
+	TypeError: each row of m_a must be of the same size
