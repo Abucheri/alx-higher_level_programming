@@ -29,3 +29,30 @@
 	guillaume@ubuntu:~/0x0A$ 
 	```
 	- ___No test cases needed___
+
+1. My list
+	- Write a class `MyList` that inherits from `list`:
+		- Public instance method: `def print_sorted(self):` that prints the list, but sorted (ascending sort)
+		- You can assume that all the elements of the list will be of type int
+		- You are not allowed to import any module
+	```
+	guillaume@ubuntu:~/0x0A$ cat 1-main.py
+	#!/usr/bin/python3
+	MyList = __import__('1-my_list').MyList
+
+	my_list = MyList()
+	my_list.append(1)
+	my_list.append(4)
+	my_list.append(2)
+	my_list.append(3)
+	my_list.append(5)
+	print(my_list)
+	my_list.print_sorted()
+	print(my_list)
+
+	guillaume@ubuntu:~/0x0A$ ./1-main.py
+	[1, 4, 2, 3, 5]
+	[1, 2, 3, 4, 5]
+	[1, 4, 2, 3, 5]
+	guillaume@ubuntu:~/0x0A$ 
+	```
