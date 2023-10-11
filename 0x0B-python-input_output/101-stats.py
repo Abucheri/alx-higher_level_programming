@@ -32,6 +32,7 @@ metrics = {
             }
         }
 line_count = 0
+lines = []
 try:
     for line in sys.stdin:
         parts = line.split()
@@ -43,22 +44,19 @@ try:
                 if status_code in metrics['status_codes']:
                     metrics['status_codes'][status_code] += 1
                 line_count += 1
+                lines.append(line.strip())
                 if line_count % 10 == 0:
-                    try:
-                        print(f"File size: {metrics['total_size']}")
-                        for code, count in \
-                                sorted(metrics['status_codes'].items()):
-                            if count > 0:
-                                print(f"{code}: {count}")
-                    except BrokenPipeError:
-                        pass
+                    print(f"File size: {metrics['total_size']}")
+                    for code in sorted(metrics['status_codes']):
+                        if metrics['status_codes'][code] > 0:
+                            print(f"{code}: {metrics['status_codes'][code]}")
             except ValueError:
                 pass
 except KeyboardInterrupt:
-    try:
-        print(f"File size: {metrics['total_size']}")
-        for code, count in sorted(metrics['status_codes'].items()):
-            if count > 0:
-                print(f"{code}: {count}")
-    except BrokenPipeError:
-        pass
+    print(f"File size: {metrics['total_size']}")
+    for code in sorted(metrics['status_codes']):
+        if metrics['status_codes'][code] > 0:
+            print(f"{code}: {metrics['status_codes'][code]}")
+    raise
+except Exception:
+    raise
