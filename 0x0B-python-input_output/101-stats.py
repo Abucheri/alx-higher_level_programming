@@ -15,48 +15,48 @@ it prints those statistics since the beginning:
             that status code.
             The status codes are printed in ascending order.
 """
-import sys
 
 
-metrics = {
-        'total_size': 0,
-        'status_codes': {
-            200: 0,
-            301: 0,
-            400: 0,
-            401: 0,
-            403: 0,
-            404: 0,
-            405: 0,
-            500: 0,
-            }
-        }
-line_count = 0
-lines = []
-try:
-    for line in sys.stdin:
-        parts = line.split()
-        if len(parts) > 2:
-            try:
-                status_code = int(parts[-2])
-                file_size = int(parts[-1])
-                metrics['total_size'] += file_size
-                if status_code in metrics['status_codes']:
-                    metrics['status_codes'][status_code] += 1
+def print_metrics(size, status_codes):
+    """Print the metrics for HTTP status codes.
+
+    Args:
+        size (int): The file size.
+        status_codes (dict): HTTP status codes.
+    """
+    print("File size: {}".format(size))
+    for key in sorted(status_codes):
+        print("{}: {}".format(key, status_codes[key]))
+
+
+if __name__ == "__main__":
+    import sys
+
+    size = 0
+    status_codes = {}
+    codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+    line_count = 0
+    try:
+        for line in sys.stdin:
+            if line_count == 10:
+                print_metrics(size, status_codes)
+                line_count = 1
+            else:
                 line_count += 1
-                lines.append(line.strip())
-                if line_count % 10 == 0:
-                    print(f"File size: {metrics['total_size']}")
-                    for code in sorted(metrics['status_codes']):
-                        if metrics['status_codes'][code] > 0:
-                            print(f"{code}: {metrics['status_codes'][code]}")
-            except ValueError:
+            line = line.split()
+            try:
+                size += int(line[-1])
+            except (IndexError, ValueError):
                 pass
-except KeyboardInterrupt:
-    print(f"File size: {metrics['total_size']}")
-    for code in sorted(metrics['status_codes']):
-        if metrics['status_codes'][code] > 0:
-            print(f"{code}: {metrics['status_codes'][code]}")
-    raise
-except Exception:
-    raise
+            try:
+                if line[-2] in codes:
+                    if status_codes.get(line[-2], -1) == -1:
+                        status_codes[line[-2]] = 1
+                    else:
+                        status_codes[line[-2]] += 1
+            except IndexError:
+                pass
+        print_metrics(size, status_codes)
+    except KeyboardInterrupt:
+        print_metrics(size, status_codes)
+        raise
