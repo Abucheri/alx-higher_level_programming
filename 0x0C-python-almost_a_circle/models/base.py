@@ -75,3 +75,23 @@ class Base:
         if json_string is None or json_string == "":
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Create a new instance with attributes from a dictionary.
+
+        Args:
+            cls (class): The class to create an instance of.
+            dictionary (dict): A dictionary containing attribute values.
+
+        Returns:
+            obj: A new instance of the class with attributes
+            from the dictionary
+        """
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                new_instance = cls(1, 1)
+            else:
+                new_instance = cls(1)
+        new_instance.update(**dictionary)
+        return new_instance
