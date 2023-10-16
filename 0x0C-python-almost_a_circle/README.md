@@ -829,6 +829,7 @@
 	guillaume@ubuntu:~/$ ./101-main.py
 	....
 	```
+
 		- Uncommented line in `/etc/ssh/ssh_config` that said `# ForwardX11` no and change `no` to `yes`.
 		- Then added line `config.ssh.forward_agent = true` to my Vagrantfile in addition to `config.ssh.forward_x11 = true`.
 		- Halted my vm with `vagrant halt` and started it back up with `vagrant up --provision` then `vagrant ssh`.
