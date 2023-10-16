@@ -12,6 +12,10 @@ class Rectangle(Base):
         height (int): The height of the rectangle.
         x (int): The x-coordinate of the rectangle's position.
         y (int): The y-coordinate of the rectangle's position.
+
+    Raises:
+        TypeError: If width, height, x, or y is not an integer.
+        ValueError: If width, height, x, or y isn't within the allowed range.
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
@@ -27,6 +31,11 @@ class Rectangle(Base):
             id (int, optional): The unique identifier for the instance.
             If not provided, it will be automatically assigned based on the
             current number of objects created (__nb_objects)
+
+        Raises:
+            TypeError: If width, height, x, or y is not an integer.
+            ValueError: If width, height, x, or y isn't within the
+            allowed range.
         """
         super().__init__(id)
         self.width = width
