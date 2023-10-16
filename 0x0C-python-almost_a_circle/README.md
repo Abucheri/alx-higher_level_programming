@@ -421,3 +421,57 @@
 	[TypeError] width must be an integer
 	guillaume@ubuntu:~/$ 
 	```
+
+12. Square update
+	- Update the class `Square` by adding the public method `def update(self, *args, **kwargs)` that assigns attributes:
+		- `*args` is the list of arguments - no-keyworded arguments
+			- 1st argument should be the `id` attribute
+			- 2nd argument should be the `size` attribute
+			- 3rd argument should be the `x` attribute
+			- 4th argument should be the `y` attribute
+		- `**kwargs` can be thought of as a double pointer to a dictionary: `key/value (keyworded arguments)`
+		- `**kwargs` must be skipped if `*args` exists and is not empty
+		- Each key in this dictionary represents an attribute to the instance
+	```
+	guillaume@ubuntu:~/$ cat 11-main.py
+	#!/usr/bin/python3
+	""" 11-main """
+	from models.square import Square
+
+	if __name__ == "__main__":
+
+    		s1 = Square(5)
+    		print(s1)
+
+    		s1.update(10)
+    		print(s1)
+
+    		s1.update(1, 2)
+    		print(s1)
+
+    		s1.update(1, 2, 3)
+    		print(s1)
+
+    		s1.update(1, 2, 3, 4)
+    		print(s1)
+
+    		s1.update(x=12)
+    		print(s1)
+
+    		s1.update(size=7, y=1)
+    		print(s1)
+
+    		s1.update(size=7, id=89, y=1)
+    		print(s1)
+
+	guillaume@ubuntu:~/$ ./11-main.py
+	[Square] (1) 0/0 - 5
+	[Square] (10) 0/0 - 5
+	[Square] (1) 0/0 - 2
+	[Square] (1) 3/0 - 2
+	[Square] (1) 3/4 - 2
+	[Square] (1) 12/4 - 2
+	[Square] (1) 12/1 - 7
+	[Square] (89) 12/1 - 7
+	guillaume@ubuntu:~/$ 
+	```
