@@ -160,3 +160,23 @@ class Rectangle(Base):
         return '[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}'.format(
             self.id, self.__x, self.__y, self.__width, self.__height
         )
+
+    def update(self, *args):
+        """Assign arguments to the attributes in the specified order.
+
+        Args:
+            *args (int): The arguments to assign in the order
+            id, width, height, x, y.
+        """
+        if args:
+            for i, arg in enumerate(args):
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.width = arg
+                elif i == 2:
+                    self.height = arg
+                elif i == 3:
+                    self.x = arg
+                elif i == 4:
+                    self.y = arg
