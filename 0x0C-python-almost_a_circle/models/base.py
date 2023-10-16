@@ -2,6 +2,8 @@
 
 """Definition of the Base class."""
 import json
+import csv
+import turtle
 
 
 class Base:
@@ -118,3 +120,103 @@ class Base:
                 return instances
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serialize a list of objects to a CSV file.
+
+        Args:
+            cls (class): The class of the instances in list_objs.
+            list_objs (list): A list of instances to serialize to a CSV file.
+
+        Returns:
+            None
+
+        The CSV file is named after the class (e.g., "Rectangle.csv").
+        Each object is converted to a row in the CSV file.
+        The order of fields in the CSV depends on the class
+        (Rectangle or Square).
+        """
+        filename = cls.__name__ + ".csv"
+        with open(filename, mode='w', newline='') as file:
+            if list_objs is None or list_objs == []:
+                file.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(file, fieldnames=fieldnames)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserialize objects from a CSV file.
+
+        Args:
+            cls (class): The class for which to load instances.
+
+        Returns:
+            list: A list of instances loaded from the CSV file,
+            or an empty list if the file doesn't exist.
+
+        The CSV file is named after the class (e.g., "Rectangle.csv").
+        The method reads the header to determine the class
+        (Rectangle or Square) and deserializes objects accordingly.
+        """
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, mode='r', newline='') as file:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                list_dicts = csv.DictReader(file, fieldnames=fieldnames)
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                              for d in list_dicts]
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Open a window and draw all the Rectangles and Squares in the
+        provided lists using Turtle graphics.
+
+        Args:
+            list_rectangles (list): A list of Rectangle instances.
+            list_squares (list): A list of Square instances
+
+        Returns:
+            None
+        """
+        tuts = turtle.Turtle()
+        tuts.screen.bgcolor("#b7312c")
+        tuts.pensize(3)
+        tuts.shape("turtle")
+        tuts.color("#ffffff")
+        for rect in list_rectangles:
+            tuts.showturtle()
+            tuts.up()
+            tuts.goto(rect.x, rect.y)
+            tuts.down()
+            for i in range(2):
+                tuts.forward(rect.width)
+                tuts.left(90)
+                tuts.forward(rect.height)
+                tuts.left(90)
+            tuts.hideturtle()
+        tuts.color("#b5e3d8")
+        for sqr in list_squares:
+            tuts.showturtle()
+            tuts.up()
+            tuts.goto(sqr.x, sqr.y)
+            tuts.down()
+            for i in range(2):
+                tuts.forward(sqr.width)
+                tuts.left(90)
+                tuts.forward(sqr.height)
+                tuts.left(90)
+            tuts.hideturtle()
+        turtle.exitonclick()
