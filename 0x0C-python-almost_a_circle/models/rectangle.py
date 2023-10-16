@@ -138,3 +138,23 @@ class Rectangle(Base):
             int: The area of the rectangle (width * height).
         """
         return self.__width * self.__height
+
+    def display(self):
+        """Print the Rectangle instance using the character # to represent it.
+        """
+        if self.__width == 0 or self.__height == 0:
+            print("")
+            return
+        for _ in range(self.__height):
+            print("#" * self.__width)
+
+    def __str__(self):
+        """Return a custom string representation of the Rectangle instance.
+
+        Returns:
+            str: A string in the format
+            '[Rectangle] (<id>) <x>/<y> - <width>/<height>'.
+        """
+        return '[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}'.format(
+            self.id, self.__x, self.__y, self.__width, self.__height
+        )

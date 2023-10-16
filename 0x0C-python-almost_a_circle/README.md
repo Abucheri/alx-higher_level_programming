@@ -162,3 +162,56 @@
 	56
 	guillaume@ubuntu:~/$ 
 	```
+
+5. Display #0
+	- Update the class `Rectangle` by adding the public method `def display(self):` that prints in `stdout` the `Rectangle` instance with the character `#` - you don’t need to handle `x` and `y` here.
+	```
+	guillaume@ubuntu:~/$ cat 4-main.py
+	#!/usr/bin/python3
+	""" 4-main """
+	from models.rectangle import Rectangle
+
+	if __name__ == "__main__":
+
+    		r1 = Rectangle(4, 6)
+    		r1.display()
+
+    		print("---")
+
+    		r1 = Rectangle(2, 2)
+    		r1.display()
+
+	guillaume@ubuntu:~/$ ./4-main.py
+	####
+	####
+	####
+	####
+	####
+	####
+	---
+	##
+	##
+	guillaume@ubuntu:~/$
+	```
+
+6. __str__
+	- Update the class `Rectangle` by overriding the `__str__` method so that it returns `[Rectangle] (<id>) <x>/<y> - <width>/<height>`
+	```
+	guillaume@ubuntu:~/$ cat 5-main.py
+	#!/usr/bin/python3
+	""" 5-main """
+	from models.rectangle import Rectangle
+
+	if __name__ == "__main__":
+
+    		r1 = Rectangle(4, 6, 2, 1, 12)
+    		print(r1)
+
+    		r2 = Rectangle(5, 5, 1)
+    		print(r2)
+
+	guillaume@ubuntu:~/$ ./5-main.py
+	[Rectangle] (12) 2/1 - 4/6
+	[Rectangle] (1) 1/0 - 5/5
+	guillaume@ubuntu:~/$ 
+	```
