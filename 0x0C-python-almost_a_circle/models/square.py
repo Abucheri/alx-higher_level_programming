@@ -33,6 +33,26 @@ class Square(Rectangle):
         """
         super().__init__(size, size, x, y, id)
 
+    @property
+    def size(self):
+        """Get the size of the square."""
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """Set the size of the square, which is equal to both width and height
+
+        Args:
+            value (int): The size of the square.
+
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is not within the allowed range
+            (same as width and height in Rectangle).
+        """
+        self.width = value
+        self.height = value
+
     def __str__(self):
         """Return a custom string representation of the Square instance.
 
