@@ -145,8 +145,10 @@ class Rectangle(Base):
         if self.__width == 0 or self.__height == 0:
             print("")
             return
+        for _ in range(self.__y):
+            print("")
         for _ in range(self.__height):
-            print("#" * self.__width)
+            print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
         """Return a custom string representation of the Rectangle instance.
