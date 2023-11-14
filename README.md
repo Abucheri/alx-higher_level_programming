@@ -9,3 +9,4 @@
 10. [0x0A. Python - Inheritance](./0x0A-python-inheritance/ 'inheritance')
 11. [0x0B. Python - Input/Output](./0x0B-python-input_output/ 'input_output_files_JSON')
 12. [0x0C. Python - Almost a circle](./0x0C-python-almost_a_circle/ 'args_kwargs')
+13. [0x0D. SQL - Introduction](./0x0D-SQL_introduction/ 'SQL Introduction')
