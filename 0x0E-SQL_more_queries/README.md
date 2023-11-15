@@ -248,3 +248,55 @@
 	8   Dallas  Texas
 	guillaume@ubuntu:~/$ 
 	```
+
+10. Genre ID by show
+	- Import the database dump from `hbtn_0d_tvshows` to your MySQL server: [download](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql)
+	- Write a script that lists all shows contained in `hbtn_0d_tvshows` that have at least one genre linked.
+		- Each record should display: `tv_shows.title` - `tv_show_genres.genre_id`
+		- Results must be sorted in ascending order by `tv_shows.title` and `tv_show_genres.genre_id`
+		- You can use only one `SELECT` statement
+		- The database name will be passed as an argument of the `mysql` command
+	```
+	guillaume@ubuntu:~/$ cat 10-genre_id_by_show.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows
+	Enter password: 
+	title   genre_id
+	Breaking Bad    1
+	Breaking Bad    6
+	Breaking Bad    7
+	Breaking Bad    8
+	Dexter  1
+	Dexter  2
+	Dexter  6
+	Dexter  7
+	Dexter  8
+	Game of Thrones 1
+	Game of Thrones 3
+	Game of Thrones 4
+	House   1
+	House   2
+	New Girl    5
+	Silicon Valley  5
+	The Big Bang Theory 5
+	The Last Man on Earth   1
+	The Last Man on Earth   5
+	guillaume@ubuntu:~/$ 
+	```
+	## How to import a SQL dump
+	```
+	$ echo "CREATE DATABASE hbtn_0d_tvshows;" | mysql -uroot -p
+	Enter password: 
+	$ curl "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql" -s | mysql -uroot -p hbtn_0d_tvshows
+	Enter password: 
+	$ echo "SELECT * FROM tv_genres" | mysql -uroot -p hbtn_0d_tvshows
+	Enter password: 
+	id  name
+	1   Drama
+	2   Mystery
+	3   Adventure
+	4   Fantasy
+	5   Comedy
+	6   Crime
+	7   Suspense
+	8   Thriller
+	$
+	```
