@@ -491,3 +491,48 @@
 	House
 	guillaume@ubuntu:~/$ 
 	```
+
+19. Rotten tomatoes
+	- Import the database `hbtn_0d_tvshows_rate` dump to your MySQL server: [download](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows_rate.sql)
+	- Write a script that lists all shows from `hbtn_0d_tvshows_rate` by their rating.
+		- Each record should display: `tv_shows.title` - `rating sum`
+		- Results must be sorted in descending order by the rating
+		- You can use only one `SELECT` statement
+		- The database name will be passed as an argument of the `mysql` command
+	```
+	guillaume@ubuntu:~/$ cat 102-rating_shows.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows_rate
+	Enter password: 
+	title   rating
+	Better Call Saul    163
+	Homeland    145
+	Silicon Valley  82
+	Game of Thrones 79
+	Dexter  24
+	House   21
+	Breaking Bad    16
+	The Last Man on Earth   10
+	The Big Bang Theory 0
+	New Girl    0
+	guillaume@ubuntu:~/$ 
+	```
+	## Importing data to new database
+	```
+	vagrant@ubuntu-focal:~/alx-higher_level_programming/0x0E-SQL_more_queries$ echo "CREATE DATABASE IF NOT EXISTS hbtn_0d_tvshows_rate" | mysql -uroot -p
+	Enter password: 
+	vagrant@ubuntu-focal:~/alx-higher_level_programming/0x0E-SQL_more_queries$ echo "SHOW DATABASES;" | mysql -uroot -p
+	Enter password: 
+	Database
+	hbtn_0c_0
+	hbtn_0d_2
+	hbtn_0d_tvshows
+	hbtn_0d_tvshows_rate
+	hbtn_0d_usa
+	information_schema
+	mysql
+	performance_schema
+	sys
+	vagrant@ubuntu-focal:~/alx-higher_level_programming/0x0E-SQL_more_queries$ curl "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows_rate.sql" -s | mysql -ur
+	oot -p hbtn_0d_tvshows_rate
+	Enter password: 
+	vagrant@ubuntu-focal:~/alx-higher_level_programming/0x0E-SQL_more_queries$ 
+	```
