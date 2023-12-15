@@ -394,3 +394,84 @@ You can ignore it.
 	guillaume@ubuntu:~/0x0F$ 
 	```
 	- ___No test cases needed___
+
+9. Contains `a`
+	- Write a script that lists all `State` objects that contain the letter `a` from the database `hbtn_0e_6_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- Results must be sorted in ascending order by `states.id`
+		- The results must be displayed as they are in the example below
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ ./9-model_state_filter_a.py root root hbtn_0e_6_usa
+	1: California
+	2: Arizona
+	3: Texas
+	5: Nevada
+	guillaume@ubuntu:~/0x0F$
+	```
+	- ___No test cases needed___
+
+10. Get a state
+	- Write a script that prints the `State` object with the `name` passed as argument from the database `hbtn_0e_6_usa`
+		- Your script should take 4 arguments: `mysql username`, `mysql password`, `database name` and `state name to search` (`SQL injection free`)
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- You can assume you have one record with the state name to search
+		- Results must display the `states.id`
+		- If no state has the name you searched for, display `Not found`
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ ./10-model_state_my_get.py root root hbtn_0e_6_usa Texas
+	3
+	guillaume@ubuntu:~/0x0F$ ./10-model_state_my_get.py root root hbtn_0e_6_usa Illinois
+	Not found
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+11. Add a new state
+	- Write a script that adds the `State` object `“Louisiana”` to the database `hbtn_0e_6_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- Print the new `states.id` after creation
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ ./11-model_state_insert.py root root hbtn_0e_6_usa 
+	6
+	guillaume@ubuntu:~/0x0F$ ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+	1: California
+	2: Arizona
+	3: Texas
+	4: New York
+	5: Nevada
+	6: Louisiana
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+12. Update a state
+	- Write a script that changes the name of a `State` object from the database `hbtn_0e_6_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- Change the `name` of the `State` where `id = 2` to `New Mexico`
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ ./12-model_state_update_id_2.py root root hbtn_0e_6_usa 
+	guillaume@ubuntu:~/0x0F$ ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+	1: California
+	2: New Mexico
+	3: Texas
+	4: New York
+	5: Nevada
+	6: Louisiana
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
