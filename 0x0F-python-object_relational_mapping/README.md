@@ -350,3 +350,47 @@ You can ignore it.
 	guillaume@ubuntu:~/0x0F$ 
 	```
 	- ___No test cases needed___
+
+7. All states via SQLAlchemy
+	- Write a script that lists all `State` objects from the database `hbtn_0e_6_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- Results must be sorted in ascending order by `states.id`
+		- The results must be displayed as they are in the example below
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ cat 7-model_state_fetch_all.sql
+	-- Insert states
+	INSERT INTO states (name) VALUES ("California"), ("Arizona"), ("Texas"), ("New York"), ("Nevada");
+
+	guillaume@ubuntu:~/0x0F$ cat 7-model_state_fetch_all.sql | mysql -uroot -p hbtn_0e_6_usa
+	Enter password: 
+	guillaume@ubuntu:~/0x0F$ ./7-model_state_fetch_all.py root root hbtn_0e_6_usa
+	1: California
+	2: Arizona
+	3: Texas
+	4: New York
+	5: Nevada
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+8. First state
+	- Write a script that prints the first `State` object from the database `hbtn_0e_6_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- The state you display must be the first in `states.id`
+		- You are not allowed to fetch all states from the database before displaying the result
+		- The results must be displayed as they are in the example below
+		- If the table `states` is empty, print `Nothing` followed by a new line
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ ./8-model_state_fetch_first.py root root hbtn_0e_6_usa
+	1: California
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
