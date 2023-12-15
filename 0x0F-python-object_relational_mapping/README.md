@@ -475,3 +475,220 @@ You can ignore it.
 	guillaume@ubuntu:~/0x0F$ 
 	```
 	- ___No test cases needed___
+
+13. Delete states
+	- Write a script that deletes all `State` objects with a name containing the letter `a` from the database `hbtn_0e_6_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ ./13-model_state_delete_a.py root root hbtn_0e_6_usa 
+	guillaume@ubuntu:~/0x0F$ ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+	2: New Mexico
+	4: New York
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+14. Cities in state
+	- Write a Python file similar to `model_state.py` named `model_city.py` that contains the class definition of a `City`.
+		- `City` class:
+			- inherits from `Base` (imported from `model_state`)
+			- links to the MySQL table `cities`
+			- class attribute `id` that represents a column of an auto-generated, unique integer, can’t be null and is a primary key
+			- class attribute `name` that represents a column of a string of 128 characters and can’t be null
+			- class attribute `state_id` that represents a column of an integer, can’t be null and is a foreign key to `states.id`
+		- You must use the module `SQLAlchemy`
+	- Next, write a script `14-model_city_fetch_by_state.py` that prints all `City` objects from the database `hbtn_0e_14_usa`:
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- You must import `State` and `Base` from `model_state` - `from model_state import Base, State`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- Results must be sorted in ascending order by `cities.id`
+		- Results must be display as they are in the example below (`<state name>: (<city id>) <city name>`)
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ cat 14-model_city_fetch_by_state.sql
+	-- Create database hbtn_0e_14_usa, tables states and cities + some data
+	CREATE DATABASE IF NOT EXISTS hbtn_0e_14_usa;
+	USE hbtn_0e_14_usa;
+
+	CREATE TABLE IF NOT EXISTS states ( 
+	    id INT NOT NULL AUTO_INCREMENT, 
+	    name VARCHAR(256) NOT NULL,
+	    PRIMARY KEY (id)
+	);
+	INSERT INTO states (name) VALUES ("California"), ("Arizona"), ("Texas"), ("New York"), ("Nevada");
+
+	CREATE TABLE IF NOT EXISTS cities ( 
+	    id INT NOT NULL AUTO_INCREMENT, 
+	    state_id INT NOT NULL,
+	    name VARCHAR(256) NOT NULL,
+	    PRIMARY KEY (id),
+	    FOREIGN KEY(state_id) REFERENCES states(id)
+	);
+	INSERT INTO cities (state_id, name) VALUES (1, "San Francisco"), (1, "San Jose"), (1, "Los Angeles"), (1, "Fremont"), (1, "Livermore");
+	INSERT INTO cities (state_id, name) VALUES (2, "Page"), (2, "Phoenix");
+	INSERT INTO cities (state_id, name) VALUES (3, "Dallas"), (3, "Houston"), (3, "Austin");
+	INSERT INTO cities (state_id, name) VALUES (4, "New York");
+	INSERT INTO cities (state_id, name) VALUES (5, "Las Vegas"), (5, "Reno"), (5, "Henderson"), (5, "Carson City");
+
+	guillaume@ubuntu:~/0x0F$ cat 14-model_city_fetch_by_state.sql | mysql -uroot -p
+	Enter password: 
+	guillaume@ubuntu:~/0x0F$ ./14-model_city_fetch_by_state.py root root hbtn_0e_14_usa
+	California: (1) San Francisco
+	California: (2) San Jose
+	California: (3) Los Angeles
+	California: (4) Fremont
+	California: (5) Livermore
+	Arizona: (6) Page
+	Arizona: (7) Phoenix
+	Texas: (8) Dallas
+	Texas: (9) Houston
+	Texas: (10) Austin
+	New York: (11) New York
+	Nevada: (12) Las Vegas
+	Nevada: (13) Reno
+	Nevada: (14) Henderson
+	Nevada: (15) Carson City
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+15. City relationship
+	- Improve the files `model_city.py` and `model_state.py`, and save them as `relationship_city.py` and `relationship_state.py`:
+		- `City` class:
+			- No change
+		- `State` class:
+			- In addition to previous requirements, the class attribute `cities` must represent a relationship with the class `City`. If the `State` object is deleted, all linked `City` objects must be automatically deleted. Also, the reference from a `City` object to his `State` should be named `state`
+		- You must use the module `SQLAlchemy`
+	- Write a script that creates the `State “California”` with the `City “San Francisco”` from the database `hbtn_0e_100_usa`: (`100-relationship_states_cities.py`)
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- You must use the `cities` relationship for all `State` objects
+		- Your code should not be executed when imported
+	```
+	guillaume@ubuntu:~/0x0F$ cat 100-relationship_states_cities.sql
+	-- Create the database hbtn_0e_100_usa
+	CREATE DATABASE IF NOT EXISTS hbtn_0e_100_usa;
+	USE hbtn_0e_100_usa;
+
+	SELECT * FROM states;
+	SELECT * FROM cities;
+
+	guillaume@ubuntu:~/0x0F$ cat 100-relationship_states_cities.sql | mysql -uroot -p
+	Enter password: 
+	ERROR 1146 (42S02) at line 5: Table 'hbtn_0e_100_usa.states' doesn't exist
+	guillaume@ubuntu:~/0x0F$ ./100-relationship_states_cities.py root root hbtn_0e_100_usa
+	guillaume@ubuntu:~/0x0F$ cat 100-relationship_states_cities.sql | mysql -uroot -p
+	Enter password: 
+	id  name
+	1   California
+	id  name    state_id
+	1   San Francisco   1
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+16. List relationship
+	- Write a script that lists all `State` objects, and corresponding `City` objects, contained in the database `hbtn_0e_101_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- The connection to your MySQL server must be to `localhost` on port `3306`
+		- You must only use one query to the database
+		- You must use the `cities` relationship for all `State` objects
+		- Results must be sorted in ascending order by `states.id` and `cities.id`
+		- Results must be displayed as they are in the example below
+		- Your code should not be executed when imported
+	```
+	<state id>: <state name>
+	<tabulation><city id>: <city name>
+	```
+	```
+	guillaume@ubuntu:~/0x0F$ cat 101-relationship_states_cities_list.sql
+	-- Create states table in hbtn_0e_101_usa with some data
+	CREATE DATABASE IF NOT EXISTS hbtn_0e_101_usa;
+	USE hbtn_0e_101_usa;
+	CREATE TABLE IF NOT EXISTS states ( 
+	    id INT NOT NULL AUTO_INCREMENT, 
+	    name VARCHAR(256) NOT NULL,
+	    PRIMARY KEY (id)
+	);
+	INSERT INTO states (name) VALUES ("California"), ("Arizona"), ("Texas"), ("New York"), ("Nevada");
+
+	CREATE TABLE IF NOT EXISTS cities ( 
+	    id INT NOT NULL AUTO_INCREMENT, 
+	    state_id INT NOT NULL,
+	    name VARCHAR(256) NOT NULL,
+	    PRIMARY KEY (id),
+	    FOREIGN KEY(state_id) REFERENCES states(id)
+	);
+	INSERT INTO cities (state_id, name) VALUES (1, "San Francisco"), (1, "San Jose"), (1, "Los Angeles"), (1, "Fremont"), (1, "Livermore");
+	INSERT INTO cities (state_id, name) VALUES (2, "Page"), (2, "Phoenix");
+	INSERT INTO cities (state_id, name) VALUES (3, "Dallas"), (3, "Houston"), (3, "Austin");
+	INSERT INTO cities (state_id, name) VALUES (4, "New York");
+	INSERT INTO cities (state_id, name) VALUES (5, "Las Vegas"), (5, "Reno"), (5, "Henderson"), (5, "Carson City");
+
+	guillaume@ubuntu:~/0x0F$ cat 101-relationship_states_cities_list.sql | mysql -uroot -p
+	guillaume@ubuntu:~/0x0F$ ./101-relationship_states_cities_list.py root root hbtn_0e_101_usa
+	1: California
+	    1: San Francisco
+	    2: San Jose
+	    3: Los Angeles
+	    4: Fremont
+	    5: Livermore
+	2: Arizona
+	    6: Page
+	    7: Phoenix
+	3: Texas
+	    8: Dallas
+	    9: Houston
+	    10: Austin
+	4: New York
+	    11: New York
+	5: Nevada
+	    12: Las Vegas
+	    13: Reno
+	    14: Henderson
+	    15: Carson City
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
+17. From city
+	- Write a script that lists all `City` objects from the database `hbtn_0e_101_usa`
+		- Your script should take 3 arguments: `mysql username`, `mysql password` and `database name`
+		- You must use the module `SQLAlchemy`
+		- Your script should connect to a MySQL server running on `localhost` at port `3306`
+		- You must use only one query to the database
+		- You must use the `state` relationship to access to the `State` object linked to the `City` object
+		- Results must be sorted in ascending order by `cities.id`
+		- Results must be displayed as they are in the example below
+		- Your code should not be executed when imported
+	```
+	<city id>: <city name> -> <state name>
+	```
+	```
+	guillaume@ubuntu:~/0x0F$ ./102-relationship_cities_states_list.py root root hbtn_0e_101_usa
+	1: San Francisco -> California
+	2: San Jose -> California
+	3: Los Angeles -> California
+	4: Fremont -> California
+	5: Livermore -> California
+	6: Page -> Arizona
+	7: Phoenix -> Arizona
+	8: Dallas -> Texas
+	9: Houston -> Texas
+	10: Austin -> Texas
+	11: New York -> New York
+	12: Las Vegas -> Nevada
+	13: Reno -> Nevada
+	14: Henderson -> Nevada
+	15: Carson City -> Nevada
+	guillaume@ubuntu:~/0x0F$ 
+	```
+	- ___No test cases needed___
+
