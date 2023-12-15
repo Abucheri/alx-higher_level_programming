@@ -305,6 +305,8 @@ You can ignore it.
 	- ___No test cases needed___
 
 6. First state model
+	![f84fe6edb9436c8560996c6d72e17ea51dab28e1](https://github.com/Abucheri/alx-higher_level_programming/assets/24778489/6fc129fa-0941-4439-9749-361e89babf7b)
+
 	- Write a python file that contains the class definition of a `State` and an instance `Base = declarative_base()`:
 		- `State` class:
 			- inherits from `Base` [Tips](https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/basic_use.html)
