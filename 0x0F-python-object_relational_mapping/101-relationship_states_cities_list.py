@@ -17,8 +17,7 @@ def list_states_cities(username, password, db_name):
     Lists all State objects and corresponding City objects in the database.
     """
     engine = create_engine("mysql+mysqldb://{0}:{1}@localhost:3306/{2}"
-                           .format(username, password, db_name),
-                           pool_pre_ping=True)
+                           .format(username, password, db_name))
     Session = sessionmaker(bind=engine)
     session = Session()
     for state in session.query(State).order_by(State.id):
