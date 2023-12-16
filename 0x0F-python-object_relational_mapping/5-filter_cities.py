@@ -21,13 +21,15 @@ if __name__ == "__main__":
                          passwd=password, db=database)
     cursor = db.cursor()
     query = """
-    SELECT * FROM cities
-    INNER JOIN states
-       ON cities.state_id = states.id
+    SELECT cities.id, cities.name, states.name
+    FROM cities
+    JOIN states ON cities.state_id = states.id
+    WHERE BINARY states.name = %s
     ORDER BY cities.id
     """
-    cursor.execute(query)
-    print(", ".join([cities[2] for cities in cursor.fetchall()
-          if cities[4] == sys.argv[4]]))
+    cursor.execute(query, (state_name,))
+    result = cursor.fetchall()
+    if result:
+        print(", ".join([city[1] for city in result]))
     cursor.close()
     db.close()
