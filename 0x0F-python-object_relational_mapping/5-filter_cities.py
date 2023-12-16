@@ -21,7 +21,7 @@ if __name__ == "__main__":
                          passwd=password, db=database)
     cursor = db.cursor()
     query = """
-    SELECT cities.name
+    SELECT cities.id, cities.name
     FROM cities
     JOIN states ON cities.state_id = states.id
     WHERE states.name = BINARY %s
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     cursor.execute(query, (state_name,))
     rows = cursor.fetchall()
     if rows:
-        cities = ', '.join(row[0] for row in rows)
+        cities = ', '.join(row[1] for row in rows)
         print(cities)
     cursor.close()
     db.close()
