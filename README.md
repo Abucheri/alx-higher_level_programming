@@ -1,5 +1,9 @@
 # High Level Programming
 
+0. [0x00. Python - Hello, World](./0x00-python-hello_world/ 'hello world')
+1. [0x01. Python - if/else, loops, functions](./0x01-python-if_else_loops_functions/ 'loops')
+2. [0x02. Python - import & modules](./0x02-python-import_modules/ 'modules')
+3. [0x03. Python - Data Structures: Lists, Tuples](./0x03-python-data_structures/ 'data structures')
 4. [0x04. Python - More Data Structures: Set, Dictionary](./0x04-python-more_data_structures/)
 5. [0x05. Python - Exceptions](./0x05-python-exceptions/ 'Exceptions and Errors')
 6. [0x06. Python - Classes and Objects](./0x06-python-classes/ 'OOP (classes and objects)')
