@@ -17,5 +17,5 @@ if __name__ == "__main__":
         reqst = request.Request(url, data=data, method='POST')
         with request.urlopen(reqst) as response:
             body = response.read().decode('utf-8')
-            print("Your email is:", email)
+            # print("Your email is:", email)
             print(body)
