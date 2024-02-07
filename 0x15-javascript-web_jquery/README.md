@@ -1,5 +1,8 @@
 # 0x15. JavaScript - Web jQuery
 
+![4724718](https://github.com/Abucheri/alx-higher_level_programming/assets/24778489/5d2e2cca-5229-4a3a-94be-ce6f977d46b5)
+
+
 # More Info
 ## Import JQuery
 ```
@@ -7,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 ```
+
+![1f1ihd](https://github.com/Abucheri/alx-higher_level_programming/assets/24778489/35ad6e3a-eff8-41c7-abcb-f1493acc15b5)
 
 
 0. No JQuery
