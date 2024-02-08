@@ -323,6 +323,7 @@
 		- You can’t use the jQuery API
 		- Note: Your script must be imported from the `<head>` tag, not at the end of the HTML
 	- Please test with this HTML file in your browser:
+
 	```
 	guillaume@ubuntu:~/0x15$ cat 100-main.html 
 	<!DOCTYPE html>
@@ -354,6 +355,7 @@
 		- You must use the JQuery API
 		- You script must work when it imported from the `HEAD` tag
 	- Please test with this HTML file in your browser:
+
 	```
 	guillaume@ubuntu:~/0x15$ cat 101-main.html 
 	<!DOCTYPE html>
@@ -393,6 +395,7 @@
 		- You must use the JQuery API
 		- You script must work when imported from the `<head>` tag
 	- Please test with this HTML file in your browser:
+
 	```
 	guillaume@ubuntu:~/0x15$ cat 102-main.html 
 	<!DOCTYPE html>
@@ -430,6 +433,7 @@
 		- You must use the JQuery API
 		- You script must work when imported from the `<head>` tag
 	- Please test with this HTML file in your browser:
+
 	```
 	guillaume@ubuntu:~/0x15$ cat 103-main.html 
 	<!DOCTYPE html>
